@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Вы действительно хотите удалить рецепт "{{article.title}}"</p>
+    
+    <input type="submit" value="Да" class="btn btn-warning">
+    <a href="{{ article.get.absolute.url }}" class="btn btn-outline-warning">Назад</a>
+</form>
+{% endblock main %}

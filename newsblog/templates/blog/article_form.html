@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+
+<div class="mt-4">
+    <div class="d-flex justify-content-center">
+
+        <div class="card col-8">
+            <div class="card-body">
+                <h2>Добавить новый рецепт</h2>
+            <form action="{% if 'update' in request.path %}{% url 'article_update' article.pk %}{% else %}{% url 'add_article' %}{% endif %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button class="btn btn-outline-warning" type="submit">
+                    {% if 'update' in request.path %}
+                    Изменить
+                    {% else %}
+                    Добавить
+                    {% endif %}
+                </button>
+
+            </form>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}

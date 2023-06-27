@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+
+<!-- if request.user.pk == user.pk -->
+<!-- if request.user.is_authenticated -->
+
+<section class="h-100 gradient-custom-2">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card">
+          <div class="rounded-top text-white d-flex flex-row" style="background-color: #facf5a; height:200px;">
+            <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                   alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                   style="width: 150px; z-index: 1">
+              <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
+                      style="z-index: 1;">
+                Изменить
+              </button>
+            </div>
+            <div class="ms-3" style="margin-top: 130px;">
+              <h5>{{ user.first_name }} {{ user.last_name }}</h5>
+              <p>{{ user.username }}</p>
+            </div>
+          </div>
+          <div class="p-4 text-black" style="background-color: #f8f9fa;">
+
+
+            <div class="d-flex justify-content-end text-center py-1">
+
+              <div>
+
+                <p class="mb-1 h6">email</p>
+                <p class="small text-muted mb-0">{{ user.email }}</p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+        <div class="card-body p-4 text-black">
+          <div class="mb-5">
+            <p class="lead fw-normal mb-1">О себе</p>
+            <div class="p-4" style="background-color: #f8f9fa;">
+              <p class="font-italic mb-1">Нет информации</p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <p class="lead fw-normal mb-0">Недавние рецепты</p>
+            <p class="text-muted mb-0">Просмотры</p>
+          </div>
+          {% for article in articles %}
+          <div class="card mb-2">
+            <a href="{% url 'article_detail' article.pk %}" class="text-decoration-none text-reset">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  {{ article.title }}
+                  <div>
+                    {{ article.watch }}
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>
+
+
+{% endblock main %}

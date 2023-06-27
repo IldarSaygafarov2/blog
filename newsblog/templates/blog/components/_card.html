@@ -1,0 +1,12 @@
+<a href="{{ article.get_absolute_url }}" class="text-decoration-none text-reset">
+    <div class="card" style="width: 18rem;">
+        <img src="{{ article.get_photo }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <div class="text-decoration-none text-reset">
+                <h5>{{ article }}</h5>
+            </div>
+            <p class="card-text">{{ article.content|truncatewords:20|linebreaks }}</p>
+
+        </div>
+    </div>
+</a>

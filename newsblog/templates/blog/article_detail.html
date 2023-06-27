@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+<div class="mt-5">
+    <div class="d-flex justify-content-between">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h5>{{ article.category.title }}</h5>
+
+                    <div>
+                        <a href="{% url 'article_update' article.pk %}" class="btn btn-outline-warning">Изменить</a>
+                        <a href="{% url 'article_delete' article.pk %}" class="btn bg-light text-secondary">Удалить</a>
+                    </div>
+                </div>
+                <div class="mt-2 ms-2">
+                    <div class="t110 bold t-gray800 links-no-color mar10">
+                        <h2>{{ article }}</h2>
+                    </div>
+                    <div>
+                        <a href="" class="text-decoration-none text-reset">Автор: {{ article.author }}</a> <!-- url 'profile' article.author.pk -->
+                    </div>
+                    <div class="mt-4 mb-4">
+                        <p class="card-text">{{ article.content|linebreaks }}</p>
+                    </div>
+                </div>
+                <img src="{{ article.get_photo }}" class="card-img-top" alt="...">
+                <div class="card-body">
+
+                    <div>
+                        <h4>Ингредиенты</h4>
+                        <p class="card-text">{{ article.ingredients|linebreaks }}</p>
+                    </div>
+                    <div>
+                        <h4>Приготовление</h4>
+                        <p class="card-text">{{ article.steps|linebreaks }}</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card-footer d-flex justify-content-between">
+                <p class="card-text">{{ article.created_at|timesince }} назад</p>
+                <p class="card-text">Просмотры: {{ article.watch }} </p>
+
+            </div>
+
+
+        </div>
+
+        <div class="col-3">
+
+            <h4>Новые рецепты</h4>
+
+            {% for article in articles %}
+                 <div class="mt-2 mb-2">
+                {% include 'blog/components/_card.html' %}
+                      </div>
+            {% endfor %}
+
+
+        </div>
+
+    </div>
+</div>
+{% endblock main %}
+
+
+
+
+
+
+
+

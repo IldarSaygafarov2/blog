@@ -1,0 +1,63 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            Кулинарный блог
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+
+              <form class="d-flex" method="get" action="{% url 'search_results' %}">
+                    <input name="q" class="form-control me-2" type="search" placeholder="Поиск рецептов" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Найти</button>
+              </form>
+
+
+            <div class="navbar-nav d-flex justify-content-between">
+                <div class="d-flex justify-content-between">
+
+
+                {% if request.user.is_authenticated %}
+                    <a href="" class="navbar-brend">
+                    <img src="{% static 'blog/img/309084_plus_icon.png' %}" alt="" width="20" height="20">
+                </a>
+                <a class="nav-link active" href="{% url 'add_article' %}">
+                    Добавить рецепт
+                </a>
+                </div>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Привет, {{ request.user.username }}
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'profile' request.user.pk %}">Моя страница</a></li>
+                        <li><a class="dropdown-item" href="">Мои сохраненные</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
+                    </ul>
+                </li>
+
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Войти</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Зарегестрироваться</a>
+                </li>
+                {% endif %}
+
+            </div>
+
+
+        </div>
+    </div>
+</nav>
